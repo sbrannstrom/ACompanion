@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Innehåll
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let obj of allObjects">
+      <ion-item-divider>
+        <ion-label> 
+          {{ obj.dataType | titlecase }}
+        </ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let data of obj.data" detail (click)="presentModal(data, obj.dataType)">
+        <ion-avatar slot="start">
+          <img *ngIf="obj.dataType !== 'fossils'" [src]="data.icon_uri"> 
+          <img *ngIf="obj.dataType === 'fossils'" [src]="data.image_uri"> 
+        </ion-avatar>
+        <ion-label>
+          <h2>{{data.name["name-EUen"] | titlecase}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
